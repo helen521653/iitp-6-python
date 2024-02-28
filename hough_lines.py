@@ -132,12 +132,12 @@ def detect_and_draw_lines(image, angle_step=1, lines_are_white=True, value_thres
     return image_with_lines
 
 
-img = imageio.imread("image.png")
+img = imageio.imread("./images/road.jpeg")
 gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # Бинаризация изображения
 _, binary_image = cv2.threshold(gray_image, 127, 255, cv2.THRESH_BINARY)
 accumulator, thetas, rhos = hough_line(binary_image)
-show_hough_line(img, accumulator, thetas, rhos, save_path='./')
+show_hough_line(img, accumulator, thetas, rhos, save_path='./images')
 result_image = detect_and_draw_lines(img)
 cv2.imwrite("result_image_with_lines.png", result_image)
